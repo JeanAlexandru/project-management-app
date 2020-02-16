@@ -1,0 +1,24 @@
+<h2>Create an user</h2>
+<div>
+  <mat-form-field appearance="fill">
+    <mat-label>First Name</mat-label>
+    <input [(ngModel)]="user.firstName" matInput>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>Last Name</mat-label>
+    <input [(ngModel)]="user.lastName" matInput>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input type="email" [(ngModel)]="user.email" matInput>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input type="password" [(ngModel)]="user.password" matInput>
+  </mat-form-field>
+  <br>
+</div>
+<button mat-button color="primary" (click)="saveUser()">Submit</button>

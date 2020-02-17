@@ -36,7 +36,7 @@ public class UserService {
     }
 
     // findById
-    public User findById(Long id) {
+    public User findUserById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("user not found"));
     }
@@ -60,8 +60,6 @@ public class UserService {
     public void delete(Long id) {
         userRepository.deleteById(id);
     }
-
-
 
 
 }

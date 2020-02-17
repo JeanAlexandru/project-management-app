@@ -1,24 +1,40 @@
-<h2>Create an user</h2>
-<div>
-  <mat-form-field appearance="fill">
-    <mat-label>First Name</mat-label>
-    <input [(ngModel)]="user.firstName" matInput>
-  </mat-form-field>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title >Register</mat-card-title>
+  </mat-card-header>
   <br>
-  <mat-form-field appearance="fill">
-    <mat-label>Last Name</mat-label>
-    <input [(ngModel)]="user.lastName" matInput>
-  </mat-form-field>
-  <br>
-  <mat-form-field appearance="fill">
-    <mat-label>Email</mat-label>
-    <input type="email" [(ngModel)]="user.email" matInput>
-  </mat-form-field>
-  <br>
-  <mat-form-field appearance="fill">
-    <mat-label>Password</mat-label>
-    <input type="password" [(ngModel)]="user.password" matInput>
-  </mat-form-field>
-  <br>
-</div>
-<button mat-button color="primary" (click)="saveUser()">Submit</button>
+  <div class="example-container">
+    <mat-form-field appearance="fill">
+      <mat-label>First Name</mat-label>
+      <label>
+        <input [(ngModel)]="user.firstName" matInput>
+      </label>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Last Name</mat-label>
+      <label>
+        <input [(ngModel)]="user.lastName" matInput>
+      </label>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your email</mat-label>
+      <label>
+        <input  [(ngModel)]="user.email" matInput placeholder="pat@example.com" [formControl]="email" required>
+      </label>
+      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your password</mat-label>
+      <label>
+        <input [(ngModel)]="user.password" matInput [type]="hide ? 'password' : 'text'">
+      </label>
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <button mat-raised-button color="primary" (click)="saveUser()">Submit</button>
+</mat-card>

@@ -1,0 +1,13 @@
+.example-container .mat-form-field + .mat-form-field {
+  margin-left: 16px;
+  align: "center";
+}
+
+.mat-form-field {
+  width: 60%;
+}
+
+.mat-card-title {
+  color: #1976d2;
+  align: "center";
+}

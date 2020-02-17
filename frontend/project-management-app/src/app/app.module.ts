@@ -5,10 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {IntroComponent} from "./intro/intro.component";
-import { UserComponent } from './features/user/user.component';
 import {FeaturesModule} from "./features/features.module";
-import {MaterialModule} from "../shared/material/material.module";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -20,6 +19,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     BrowserAnimationsModule,
     FeaturesModule,
+    ReactiveFormsModule,
     NgbModule.forRoot()
   ],
   providers: [],

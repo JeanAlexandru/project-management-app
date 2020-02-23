@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -36,9 +37,8 @@ public class UserService {
     }
 
     // findById
-    public User findUserById(Long id) {
-        return userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("user not found"));
+    public Optional<User> findByUsername(String id) {
+        return userRepository.findByUserName(id);
     }
 
     // update
@@ -51,9 +51,7 @@ public class UserService {
     }
 
     private void updateFields(User request, User user) {
-        user.setName(request.getName());
-        user.setPassword(request.getPassword());
-        user.setEmail(request.getEmail());
+        user.setUserName(request.getUserName());
     }
 
     // delete

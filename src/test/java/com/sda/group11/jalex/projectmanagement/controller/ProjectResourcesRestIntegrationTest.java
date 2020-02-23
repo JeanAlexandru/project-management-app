@@ -34,9 +34,7 @@ class ProjectResourcesRestIntegrationTest extends RestIntegrationTest {
     public void givenExistingProject_whenGetProjectById_thenReturnProject(){
         // GIVEN
         User expectedUser = new User();
-        expectedUser.setName("Giani");
-        expectedUser.setEmail("giani@morandi.ro");
-        expectedUser.setPassword("GianiEu2000");
+        expectedUser.setUserName("Giani");
         expectedUser = userRepository.save(expectedUser);
         Project expectedProject = new Project();
         expectedProject.setName("Matinal");
@@ -56,9 +54,7 @@ class ProjectResourcesRestIntegrationTest extends RestIntegrationTest {
     public void givenExistingUser_whenProjectSaveIsCalled_thenProjectIsSavedCorrectly(){
         // GIVEN
         User expectedUser = new User();
-        expectedUser.setName("Giani");
-        expectedUser.setEmail("giani@morandi.ro");
-        expectedUser.setPassword("GianiEu2000");
+        expectedUser.setUserName("Giani");
         expectedUser = userRepository.save(expectedUser);
         ProjectRequest projectRequest = new ProjectRequest();
         projectRequest.setUserId(expectedUser.getId());

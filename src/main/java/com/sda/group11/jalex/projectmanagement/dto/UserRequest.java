@@ -10,6 +10,7 @@ public class UserRequest {
     private String email;
     private String displayName;
     private String role;
+    private String userName;
 
     public String getRole() {
         return role;
@@ -59,15 +60,52 @@ public class UserRequest {
         this.displayName = displayName;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserRequest that = (UserRequest) o;
+
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (password != null ? !password.equals(that.password) : that.password != null) return false;
+        if (email != null ? !email.equals(that.email) : that.email != null) return false;
+        if (displayName != null ? !displayName.equals(that.displayName) : that.displayName != null) return false;
+        if (role != null ? !role.equals(that.role) : that.role != null) return false;
+        return userName != null ? userName.equals(that.userName) : that.userName == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (displayName != null ? displayName.hashCode() : 0);
+        result = 31 * result + (role != null ? role.hashCode() : 0);
+        result = 31 * result + (userName != null ? userName.hashCode() : 0);
+        return result;
+    }
+
     @Override
     public String toString() {
-        return "UserResponse{" +
+        return "UserRequest{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", displayName='" + displayName + '\'' +
                 ", role='" + role + '\'' +
+                ", userName='" + userName + '\'' +
                 '}';
     }
 }

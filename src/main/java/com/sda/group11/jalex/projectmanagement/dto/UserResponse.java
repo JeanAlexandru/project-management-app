@@ -14,6 +14,7 @@ public class UserResponse {
     private String password;
     private String email;
     private String displayName;
+    private String userName;
 
     public Long getId() {
         return id;
@@ -64,5 +65,12 @@ public class UserResponse {
                 ", email='" + email + '\'' +
                 ", displayName='" + displayName + '\'' +
                 '}';
+    }
+
+    public void setUserName(String userName) {
+    }
+
+    public String getUserName() {
+        return userName;
     }
 }

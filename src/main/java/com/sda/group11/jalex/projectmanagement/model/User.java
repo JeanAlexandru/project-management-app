@@ -5,6 +5,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
+
 @Entity(name = "User")
 @Table(name = "users")
 public class User {
@@ -13,16 +14,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull
-    private String name;
-
-    @NotNull
-    private String password;
-
-    @NotNull
-    private String email;
-
-    private String displayName;
+    private String userName;
 
     @Enumerated(value = EnumType.STRING)
     private Role role;
@@ -37,40 +29,8 @@ public class User {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getDisplayName() {
-        return displayName;
-    }
-
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
     }
 
     public Role getRole() {
@@ -81,6 +41,22 @@ public class User {
         this.role = role;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -88,23 +64,28 @@ public class User {
 
         User user = (User) o;
 
-        return id.equals(user.id);
+        if (id != null ? !id.equals(user.id) : user.id != null) return false;
+        if (userName != null ? !userName.equals(user.userName) : user.userName != null) return false;
+        if (role != user.role) return false;
+        return tasks != null ? tasks.equals(user.tasks) : user.tasks == null;
     }
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (userName != null ? userName.hashCode() : 0);
+        result = 31 * result + (role != null ? role.hashCode() : 0);
+        result = 31 * result + (tasks != null ? tasks.hashCode() : 0);
+        return result;
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", displayName='" + displayName + '\'' +
+                ", userName='" + userName + '\'' +
                 ", role=" + role +
+                ", tasks=" + tasks +
                 '}';
     }
 }

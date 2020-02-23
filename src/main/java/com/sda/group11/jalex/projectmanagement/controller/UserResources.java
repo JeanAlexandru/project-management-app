@@ -4,6 +4,8 @@ import com.sda.group11.jalex.projectmanagement.dto.*;
 import com.sda.group11.jalex.projectmanagement.model.User;
 import com.sda.group11.jalex.projectmanagement.repositories.UserRepository;
 import com.sda.group11.jalex.projectmanagement.services.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +17,9 @@ import java.util.List;
 @RestController
 @RequestMapping(path = UserResources.API_USER)
 public class UserResources {
-    public static final String API_USER = "/api/user";
+    private static final Logger log = LoggerFactory.getLogger(UserResources.class);
+
+    public static final String API_USER = "/api/users";
 
     private final UserService userService;
     private final UserMapper userMapper;
@@ -36,11 +40,12 @@ public class UserResources {
         return new ResponseEntity<>(allUsersToDto, HttpStatus.OK);
     }
 
-    @GetMapping(("/{id}"))
-    public ResponseEntity<UserResponse> getUsersById(@PathVariable Long id){
-        User user = userService.findUserById(id);
-        UserResponse userByIdToDto = userMapper.toDto(user);
-        return new ResponseEntity<>(userByIdToDto, HttpStatus.OK);
+    @GetMapping("/{username}")
+    public ResponseEntity<UserResponse> findByUsername(@PathVariable(name = "username") String username) {
+        return userService.findByUsername(username)
+                .map(userMapper::toDto)
+                .map(userResponse -> new ResponseEntity<>(userResponse, HttpStatus.OK))
+                .orElseGet(()-> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     // create

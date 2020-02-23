@@ -20,9 +20,7 @@ public class UserMapper {
     public UserResponse toDto(User user) {
         UserResponse dto = new UserResponse();
         dto.setId(user.getId());
-        dto.setName(user.getName());
-        dto.setPassword(user.getPassword());
-        dto.setEmail(user.getEmail());
+        dto.setUserName(user.getUserName());
         return dto;
     }
 
@@ -38,9 +36,7 @@ public class UserMapper {
         User entity = new User();
         String roleString = userRequest.getRole();
         entity.setRole(Role.valueOf(roleString)); // convert a string to an enum
-        entity.setName(userRequest.getName());
-        entity.setPassword(userRequest.getPassword());
-        entity.setEmail(userRequest.getEmail());
+        entity.setUserName(userRequest.getUserName());
         return entity;
     }
 

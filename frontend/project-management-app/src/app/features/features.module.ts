@@ -49,13 +49,16 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import {CommonModule} from "@angular/common";
 import { BrowserModule } from '@angular/platform-browser';
+import { ProjectEditComponent } from './project/project-edit/project-edit.component';
 
 @NgModule({
   declarations: [
     UserComponent,
+    ProjectEditComponent
   ],
   imports: [
     CommonModule,
+    DragDropModule,
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,

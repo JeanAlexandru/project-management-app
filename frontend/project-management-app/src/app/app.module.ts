@@ -8,21 +8,37 @@ import {IntroComponent} from "./intro/intro.component";
 import {FeaturesModule} from "./features/features.module";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {ReactiveFormsModule} from "@angular/forms";
+import {OktaAuthModule, OktaCallbackComponent} from "@okta/okta-angular";
+import { AuthComponent } from './auth/auth.component';
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {AuthInterceptor} from "./auth.interceptor";
+
+const config = {
+  issuer: 'https://dev-222266.okta.com/oauth2/default',
+  redirectUri: 'http://localhost:4200/implicit/callback',
+  clientId: '0oa2h3419HCWJmHvB4x6',
+  pkce: true
+};
 
 @NgModule({
   declarations: [
     IntroComponent,
-    AppComponent
+    AppComponent,
+    AuthComponent
   ],
   imports: [
+    OktaAuthModule.initAuth(config),
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FeaturesModule,
+    HttpClientModule,
     ReactiveFormsModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    MatToolbarModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

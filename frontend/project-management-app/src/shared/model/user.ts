@@ -1,19 +1,21 @@
 export interface IUser {
+  userName: string;
   firstName: string;
   lastName: string;
   email: string;
-    invalid: string;
-  password: string;
+    /*invalid: string;*/
+  role: string;
 }
 
 export class User implements IUser {
 
 
   constructor (
+    public userName: string = '',
     public firstName: string = '',
     public lastName: string = '',
-    public email: string = '',
-    public password: string = '') {
+    public role: string = '',
+    public email: string = '') {
   }
 
   invalid: string;

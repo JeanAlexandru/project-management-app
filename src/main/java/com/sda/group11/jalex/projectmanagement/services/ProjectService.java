@@ -45,7 +45,13 @@ public class ProjectService {
                 .orElseThrow(() -> new RuntimeException("project not found"));
     }
 
+    // findByName
+    public List<Project> findByName(String name) {
+        return projectRepository.findByName(name);
+    }
+
     // update
+
     public Project update(Long id, Project request) {
         Project project = projectRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("not found"));
@@ -58,8 +64,8 @@ public class ProjectService {
         project.setName(request.getName());
         project.setDescription(request.getDescription());
     }
-
     // delete
+
     public void delete(Long id) {
         projectRepository.deleteById(id);
     }
@@ -68,5 +74,4 @@ public class ProjectService {
         return projectRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("project not found"));
     }
-
 }

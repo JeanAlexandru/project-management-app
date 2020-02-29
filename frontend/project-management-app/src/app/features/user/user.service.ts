@@ -4,7 +4,6 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {from, Observable} from "rxjs";
 import {apiUrl} from "../../../environments/environment";
 import {OktaAuthService} from "@okta/okta-angular";
-import {map, mergeMap} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'

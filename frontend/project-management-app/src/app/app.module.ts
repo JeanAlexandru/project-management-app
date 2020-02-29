@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,6 +12,7 @@ import { AuthComponent } from './auth/auth.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthInterceptor} from "./auth.interceptor";
+import { DragListComponent } from './drag-list/drag-list.component';
 
 const config = {
   issuer: 'https://dev-222266.okta.com/oauth2/default',
@@ -25,7 +25,8 @@ const config = {
   declarations: [
     IntroComponent,
     AppComponent,
-    AuthComponent
+    AuthComponent,
+    DragListComponent
   ],
   imports: [
     OktaAuthModule.initAuth(config),

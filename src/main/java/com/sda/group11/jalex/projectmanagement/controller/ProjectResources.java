@@ -33,8 +33,13 @@ public class ProjectResources {
     }
 
     @GetMapping
-    public ResponseEntity<List<ProjectResponse>> findAll() {
-        List<Project> allProjects = projectService.findAll();
+    public ResponseEntity<List<ProjectResponse>> findAll(@RequestParam(required = false) String name) {
+        List<Project> allProjects;
+        if (name != null) {
+            allProjects = projectService.findByName(name);
+        } else {
+            allProjects = projectService.findAll();
+        }
         List<ProjectResponse> allProjectsToDto = projectMapper.toDto(allProjects);
         return new ResponseEntity<>(allProjectsToDto, HttpStatus.OK);
     }
@@ -45,6 +50,8 @@ public class ProjectResources {
         ProjectResponse projectByIdToDto = projectMapper.toDto(project);
         return new ResponseEntity<>(projectByIdToDto, HttpStatus.OK);
     }
+
+
 
     // create
     @PostMapping
